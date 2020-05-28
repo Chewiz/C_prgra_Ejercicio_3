@@ -1,0 +1,40 @@
+/**
+ * Realice el método que te permita obtener la diferencia entre 2 números introducidos 
+ * por la misma línea y separados únicamente por un espacio. Restricciones: Usar solo el 
+ * método length() y charAt() de String.
+ */
+ 
+public class Ejercicio_3
+{
+    public static void main(String args []){//El metodo main solo funge coomo un metodo de prueba
+        String nums = args[0]; //Guardamos el valor de entrada para realizar la prueba
+        System.out.println(nums);
+        System.out.println("La difenrencia es de: "+ difNumeros(nums)); //invocamos al metodo para realizar las pruebas
+    }
+
+    //Suponiendo una posible entrada como: 100 200, entrada la cual solo cuente con un espacio que
+    // separe las cifras, no al inicio ni al final
+    
+    public static int difNumeros (String s){ //Inicio del metodo, el cual recibe un string como parametro y retorna un entero
+        //Es importante resaltar, que este metodo solo toma en cuenta la condicion del espacio entre cifra y cifra
+        
+        int d = 0, i = 0;   //Declaración e inicializacion de nuestro contador i y el valor que se retornara
+        String n1 = "", n2 = ""; //Declaración e inicializacion de nuestras variables de apoyo
+        boolean flag = false;//Nuestra bandera que se utiliza como indicador para la separacion de digitos
+        do{//Inicio del ciclo do-while
+            if(s.charAt(i) == ' '){//Condicional que nos indica cuando se ha encontrado el primer espacio
+                flag = true;
+                i++;
+            }
+            
+            if(flag == false)//Condicional que nos ayuda a separar los digitos en base al if anterior apoyado por nuestra bandera
+                n1 += s.charAt(i);
+            else
+                n2 += s.charAt(i);
+            i++;
+        }while(i < s.length());//Fin del ciclo Do-while
+        d = (Integer.parseInt(n1)) - (Integer.parseInt(n2));//Por medio de la clase envoltorio Interger accedemos a los valores entero para realizar la respectiva operación
+        d = Math.abs(d);//La respuesta se somete al metodo abs, la cual nos retorna el valor absoluto
+        return d;//Retronamos nuestra diferencia entre 2 numeros
+    }
+}
